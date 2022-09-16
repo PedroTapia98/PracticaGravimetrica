@@ -73,5 +73,5 @@ Para hacer los cálculos con las misma unidades se tranformará la experesión a
 
 - \Delta h = la diferencia de alturas de la estación gravimetrica observada y la esatción gravimetrica fija
 ## Interpolación 
-Para fines de esta práctica, graficaremos los datos de las anomalias, así como aplicar una interpolación para cada una de las anomalías y el producto final nos de un archivo tipo raster con "countours" o "brakelines" para definir las curvas de nivel de los valores de las anomalías.
+Para fines de esta práctica, graficaremos los datos de las anomalias, así como aplicar una interpolación para cada una de ellas y el producto final nos de un archivo tipo raster con "countours" o "brakelines" para definir las curvas de nivel de los valores de las anomalías.
 
