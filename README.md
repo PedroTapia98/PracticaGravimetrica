@@ -73,5 +73,35 @@ Para hacer los cálculos con las misma unidades se tranformará la experesión a
 
 - \Delta h = la diferencia de alturas de la estación gravimetrica observada y la esatción gravimetrica fija
 ## Interpolación 
+
+
+Las herramientas de interpolación IDW (distancia inversa ponderada) y Spline se conocen como métodos determinísticos de interpolación porque están basados directamente en los valores medidos o en fórmulas matemáticas específicas que determinan la suavidad de la superficie resultante. Hay una segunda familia de métodos de interpolación que consta de métodos geoestadísticos, como kriging, que está basado en modelos estadísticos que incluyen la autocorrelación, es decir, las relaciones estadísticas entre los puntos medidos. Gracias a esto, las técnicas de estadística geográfica no sólo tienen la capacidad de producir una superficie de predicción, sino que también proporcionan alguna medida de certeza o precisión de las predicciones.
+
+Kriging presupone que la distancia o la dirección entre los puntos de muestra reflejan una correlación espacial que puede utilizarse para explicar la variación en la superficie. La herramienta Kriging ajusta una función matemática a un número específico de puntos o a todos los puntos dentro de un radio especificado, para determinar el valor de salida para cada ubicación. Kriging es un proceso que tiene varios pasos, entre los que se incluyen, el análisis estadístico exploratorio de los datos, el modelado de variogramas, la creación de la superficie y (opcionalmente) la exploración de la superficie de varianza. Este método es más adecuado cuando se sabe que hay una influencia direccional o de la distancia correlacionada espacialmente en los datos. Se utiliza a menudo en la ciencia del suelo y la geología.
+
+### La fórmula de kriging
+
+El método kriging es similar al de IDW en que pondera los valores medidos circundantes para calcular una predicción de una ubicación sin mediciones. La fórmula general para ambos interpoladores se forma como una suma ponderada de los datos:
+
+![image](https://user-images.githubusercontent.com/99137141/195413670-829afec3-ca3f-4a93-af05-c5ec58575b07.png)
+
+Donde: 
+- Z(S_{i}) = el valor medio en la ubicación n.°i
+- \lambda_{i} = un peso desconocido para el valor medio en la ubicación n.°i
+- s_{0} = la ubicación de la predicción 
+- N = el número de valores medidos
+
+Con el método kriging, las ponderaciones están basadas no sólo en la distancia entre los puntos medidos y la ubicación de la predicción, sino también en la disposición espacial general de los puntos medidos. Para utilizar la disposición espacial en las ponderaciones, la correlación espacial debe estar cuantificada. Por tanto, en kriging ordinario, el peso, λi, depende de un modelo ajustado a los puntos medidos, la distancia a la ubicación de la predicción y las relaciones espaciales entre los valores medidos alrededor de la ubicación de la predicción.
+
 Para fines de esta práctica, graficaremos los datos de las anomalias, así como aplicar una interpolación para cada una de ellas y el producto final nos de un archivo tipo raster con "countours" o "brakelines" para definir las curvas de nivel de los valores de las anomalías.
 
+### Variografía
+
+El ajuste de un modelo, o modelado espacial, también se conoce como análisis estructural o variografía. En el modelado espacial de la estructura de los puntos medidos, puede comenzar con un gráfico del semivariograma empírico, computado con la siguiente ecuación para todos los pares de ubicaciones separados por una distancia h:
+
+Semivariogram(distanceh) = 0.5 * average((valuei – valuej)2)
+La fórmula implica calcular la diferencia cuadrada entre los valores de las ubicaciones asociadas.
+
+En la imagen a continuación se muestra la asociación de un punto (en color rojo) con todas las demás ubicaciones medidas. Este proceso continúa con cada punto medido.
+
+![image](https://user-images.githubusercontent.com/99137141/195416770-42d01b96-c3c8-42f9-ac26-9dd9cb0caed6.png)
